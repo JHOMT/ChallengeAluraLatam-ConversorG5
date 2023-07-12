@@ -1,54 +1,37 @@
-package org.Jhomt;
+package org.Jhomt.Formularios;
 
+import org.Jhomt.Utils.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class ConvertidorMedidas extends JFrame{
-    JPanel panel1;
+
+public class ConvertidorMedidas extends JFrame implements Convertidor {
+    public JPanel panel1;
     private JButton convertirButton;
-    private JButton atrasbtn;
     private JButton salitbtn;
     private JComboBox comboBox1;
     private JComboBox comboBox2;
     private JTextField txtIngreso;
     private JLabel lblResultado;
+    private JButton divisasButton;
+    private JButton temperaturaButton;
+    private JButton principalButton;
+    private JButton historialbtn;
 
     public ConvertidorMedidas() {
         setTitle("Challenge Alura Latam");
         ImageIcon imageIcon = new ImageIcon("C:\\Users\\Jhon\\IdeaProjects\\ChallengeAluraLatam-ConversorG5\\src\\main\\java\\org\\Jhomt\\Imagenes\\logo.png");
         Image icono = imageIcon.getImage();
         setIconImage(icono);
-        setSize(500,350);
-        convertirButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                convertir();
-            }
-        });
-        salitbtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        atrasbtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                FormularioPrincipal inicioCovertidores= new FormularioPrincipal();
-                inicioCovertidores.setContentPane(new FormularioPrincipal().panel1);
-                inicioCovertidores.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                inicioCovertidores.setVisible(true);
-                inicioCovertidores.setSize(500,350);
-                inicioCovertidores.setVisible(true);
-                inicioCovertidores.setLocationRelativeTo(null);
-                inicioCovertidores.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                pack();
-            }
-        });
+        setSize(1000,550);
+        convertirButton.addActionListener(e -> convertir());
+        salitbtn.addActionListener(e -> System.exit(0));
+        divisasButton.addActionListener(e -> EventosClicBotones.mostrarVentanaDivisas());
+        temperaturaButton.addActionListener(e -> EventosClicBotones.mostrarVentanaTemperatura());
+        principalButton.addActionListener(e -> EventosClicBotones.mostrarVentanaPrincipal());
+        historialbtn.addActionListener(e -> EventosClicBotones.mostrarVentanaHistorial());
     }
+    @Override
     public void convertir() {
         String unidadOrigen = (String) comboBox1.getSelectedItem();
         String unidadDestino = (String) comboBox2.getSelectedItem();
@@ -174,5 +157,7 @@ public class ConvertidorMedidas extends JFrame{
             }
         }
         lblResultado.setText(String.format("%.3f %s = %.3f %s %n", valor, unidadOrigen, resultado, unidadDestino));
+        Historial historial= Historial.obtenerInstancia();
+        historial.registrarConversion("Longitud",unidadOrigen,unidadDestino,valor,resultado);
     }
 }

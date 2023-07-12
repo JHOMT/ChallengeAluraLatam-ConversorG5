@@ -1,12 +1,15 @@
-package org.Jhomt;
+package org.Jhomt.Formularios;
+
+import org.Jhomt.Utils.Convertidor;
+import org.Jhomt.Utils.EventosClicBotones;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ConvertidorMonedas extends JFrame {
-    JPanel panel1;
+public class ConvertidorMonedas extends JFrame implements Convertidor {
+    public JPanel panel1;
     private JLabel lblTitulo;
     private JComboBox<String> lblMonedas1;
     private JComboBox<String> lblMonedas2;
@@ -14,8 +17,11 @@ public class ConvertidorMonedas extends JFrame {
     private JTextField txtIngreso;
     private JPanel PanelControl;
     private JLabel lblSalida;
-    private JButton atrasButton;
     private JButton salirButton;
+    private JButton longitudesButton;
+    private JButton temperaturasButton;
+    private JButton pricipalButton;
+    private JButton historialbtn;
 
 
     public ConvertidorMonedas() {
@@ -23,7 +29,7 @@ public class ConvertidorMonedas extends JFrame {
         ImageIcon imageIcon = new ImageIcon("C:\\Users\\Jhon\\IdeaProjects\\ChallengeAluraLatam-ConversorG5\\src\\main\\java\\org\\Jhomt\\Imagenes\\logo.png");
         Image icono = imageIcon.getImage();
         setIconImage(icono);
-        setSize(500,350);
+        setSize(1000,550);
 
         convertirbtn.addActionListener(new ActionListener() {
             @Override
@@ -32,29 +38,14 @@ public class ConvertidorMonedas extends JFrame {
 
             }
         });
-        atrasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                FormularioPrincipal inicioCovertidores= new FormularioPrincipal();
-                inicioCovertidores.setContentPane(new FormularioPrincipal().panel1);
-                inicioCovertidores.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                inicioCovertidores.setVisible(true);
-                inicioCovertidores.setSize(500,350);
-                inicioCovertidores.setVisible(true);
-                inicioCovertidores.setLocationRelativeTo(null);
-                inicioCovertidores.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                pack();
-            }
-        });
-        salirButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        salirButton.addActionListener(e -> System.exit(0));
+        longitudesButton.addActionListener(e -> EventosClicBotones.mostrarVentanaLongitudes());
+        temperaturasButton.addActionListener(e -> EventosClicBotones.mostrarVentanaTemperatura());
+        pricipalButton.addActionListener(e -> EventosClicBotones.mostrarVentanaPrincipal());
+        historialbtn.addActionListener(e -> EventosClicBotones.mostrarVentanaHistorial());
     }
-    private void convertir(){
+    @Override
+    public void convertir(){
         String unidadOrigen = (String) lblMonedas1.getSelectedItem();
         String unidadDestino = (String) lblMonedas2.getSelectedItem();
         double valor = 0, resultado=0.0;
@@ -66,7 +57,7 @@ public class ConvertidorMonedas extends JFrame {
         }
         if (unidadOrigen.equals("S/ Sol Peruano")){
             if (unidadDestino.equals("$ Dólar")) {
-                resultado = valor * 3.62;
+                resultado = valor * 3.63;
             } else if (unidadDestino.equals("£ Libras Esterlinas")) {
                 resultado = valor * 4.58;
             } else if (unidadDestino.equals("€ Euros")) {
@@ -80,7 +71,7 @@ public class ConvertidorMonedas extends JFrame {
             }
         }else if (unidadOrigen.equals("$ Dólar")){
             if (unidadDestino.equals("S/ Sol Peruano")) {
-                resultado = valor * 0.27;
+                resultado = valor * 3.62;
             } else if (unidadDestino.equals("£ Libras Esterlinas")) {
                 resultado = valor * 1.26;
             } else if (unidadDestino.equals("€ Euros")) {
@@ -150,6 +141,8 @@ public class ConvertidorMonedas extends JFrame {
             }
         }
         lblSalida.setText(String.format("%.2f %s = %.2f %s %n", valor, unidadOrigen, resultado, unidadDestino));
+        Historial historialApp = Historial.obtenerInstancia();
+        historialApp.registrarConversion("Divisas",unidadOrigen,unidadDestino,valor,resultado);
     }
 
 }
