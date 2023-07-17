@@ -3,6 +3,8 @@ package org.Jhomt.Formularios;
 import org.Jhomt.Utils.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class ConvertidorMedidas extends JFrame implements Convertidor {
@@ -24,12 +26,12 @@ public class ConvertidorMedidas extends JFrame implements Convertidor {
         Image icono = imageIcon.getImage();
         setIconImage(icono);
         setSize(1000,550);
-        convertirButton.addActionListener(e -> convertir());
         salitbtn.addActionListener(e -> System.exit(0));
         divisasButton.addActionListener(e -> EventosClicBotones.mostrarVentanaDivisas());
         temperaturaButton.addActionListener(e -> EventosClicBotones.mostrarVentanaTemperatura());
         principalButton.addActionListener(e -> EventosClicBotones.mostrarVentanaPrincipal());
         historialbtn.addActionListener(e -> EventosClicBotones.mostrarVentanaHistorial());
+        convertirButton.addActionListener(e -> convertir());
     }
     @Override
     public void convertir() {

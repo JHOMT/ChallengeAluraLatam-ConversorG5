@@ -31,13 +31,7 @@ public class ConvertidorMonedas extends JFrame implements Convertidor {
         setIconImage(icono);
         setSize(1000,550);
 
-        convertirbtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                convertir();
-
-            }
-        });
+        convertirbtn.addActionListener(e -> convertir());
         salirButton.addActionListener(e -> System.exit(0));
         longitudesButton.addActionListener(e -> EventosClicBotones.mostrarVentanaLongitudes());
         temperaturasButton.addActionListener(e -> EventosClicBotones.mostrarVentanaTemperatura());

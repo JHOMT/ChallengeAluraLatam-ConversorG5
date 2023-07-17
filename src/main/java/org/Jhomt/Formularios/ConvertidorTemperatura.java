@@ -1,7 +1,6 @@
 package org.Jhomt.Formularios;
 
-import org.Jhomt.Utils.Convertidor;
-import org.Jhomt.Utils.EventosClicBotones;
+import org.Jhomt.Utils.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,12 +27,12 @@ public class ConvertidorTemperatura extends JFrame implements Convertidor {
         Image icono = imageIcon.getImage();
         setIconImage(icono);
         setSize(1000,550);
-        convertirbtn.addActionListener(e -> convertir());
         salirbtn.addActionListener(e -> System.exit(0));
-        divisasButton.addActionListener(e -> EventosClicBotones.mostrarVentanaDivisas());
         longitudesButton.addActionListener(e -> EventosClicBotones.mostrarVentanaLongitudes());
         principalButton.addActionListener(e -> EventosClicBotones.mostrarVentanaPrincipal());
         historialbtn.addActionListener(e -> EventosClicBotones.mostrarVentanaHistorial());
+        convertirbtn.addActionListener(e -> convertir());
+        divisasButton.addActionListener(e -> EventosClicBotones.mostrarVentanaDivisas());
     }
     @Override
     public void convertir() {
