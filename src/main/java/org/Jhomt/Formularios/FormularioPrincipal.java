@@ -3,6 +3,8 @@ package org.Jhomt.Formularios;
 import org.Jhomt.Utils.EventosClicBotones;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class FormularioPrincipal extends JFrame{
      public JPanel panel1;
@@ -22,9 +24,9 @@ public class FormularioPrincipal extends JFrame{
         setSize(1000,550);
         monedasbtn.addActionListener(e -> EventosClicBotones.mostrarVentanaDivisas());
         salirButton.addActionListener(e -> System.exit(0));
-        medidasbtn.addActionListener(e -> EventosClicBotones.mostrarVentanaLongitudes());
         temperaturabtn.addActionListener(e -> EventosClicBotones.mostrarVentanaTemperatura());
         historialbtn.addActionListener(e -> EventosClicBotones.mostrarVentanaHistorial());
+        medidasbtn.addActionListener(e -> EventosClicBotones.mostrarVentanaLongitudes());
     }
     public static void main(String[] args) {
         FormularioPrincipal inicioCovertidores= new FormularioPrincipal();

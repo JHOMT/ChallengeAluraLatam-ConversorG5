@@ -16,7 +16,7 @@ public class ConvertidorMedidas extends JFrame implements Convertidor {
     private JButton temperaturaButton;
     private JButton principalButton;
     private JButton historialbtn;
-    private JLabel iamgenlbl;
+    private JLabel imagenlbl;
 
     public ConvertidorMedidas() {
         setTitle("Challenge Alura Latam");
