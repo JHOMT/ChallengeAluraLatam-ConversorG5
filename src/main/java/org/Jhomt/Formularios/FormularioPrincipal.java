@@ -1,7 +1,6 @@
 package org.Jhomt.Formularios;
 
 import org.Jhomt.Utils.EventosClicBotones;
-
 import javax.swing.*;
 import java.awt.*;
 

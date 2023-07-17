@@ -4,8 +4,6 @@ import org.Jhomt.Utils.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ConvertidorTemperatura extends JFrame implements Convertidor {
 

@@ -2,11 +2,8 @@ package org.Jhomt.Formularios;
 
 import org.Jhomt.Utils.Convertidor;
 import org.Jhomt.Utils.EventosClicBotones;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ConvertidorMonedas extends JFrame implements Convertidor {
     public JPanel panel1;
