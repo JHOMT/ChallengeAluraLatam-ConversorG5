@@ -12,6 +12,7 @@ public class FormularioPrincipal extends JFrame{
     private JButton salirButton;
     private JTextPane bienvenidosALaAppTextPane;
     private JButton historialbtn;
+    private JPanel imagenLbl;
 
     public FormularioPrincipal() {
         setTitle("Challenge Alura Latam");
